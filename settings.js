@@ -1,6 +1,6 @@
 module.exports = {
 	cookieSecret: 'MongoDB',
-	db: 'blog',
+	db: 'MongoDB',
 	host: 'localhost',
 	port: 27017
 }

@@ -17,7 +17,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(flash());
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -27,6 +27,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: settings.cookieSecret,
+  key: settings.db,
+  cookie: {maxAge: 1000 * 60 * 60 *24 *30},
+  store: new MongoStore({
+    url:'mongodb://localhost:27017/MongoDB'
+  })
+}));
 
 routes(app);
 
@@ -37,16 +45,15 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-app.use(session({
-	secret: settings.cookieSecret,
-	key: settings.db,
-	cookie: {maxAge: 1000 * 60 * 60 *24 *30},
-	store: new MongoStore({
-		db:settings.db,
-		host:settings.host,
-		port: settings.port
-	})
-}));
+
+app.use(flash());
+// set flash
+// app.use(function (req, res, next) {
+//   res.locals.errors = req.flash('error');
+//   res.locals.infos = req.flash('info');
+//   next();
+// });
+
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -58,5 +65,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;

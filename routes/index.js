@@ -23,10 +23,12 @@ module.exports = function(app){
 	app.post('/reg', function(req, res){
 		var name = req.body.name,
 			password = req.body.password,
-			password_re = req.body['password_repeat'];
-
+			password_re = req.body['password-repeat'];
+			console.log(password)
+		console.log(password_re)
+		console.log(password == password_re)
 		if(password_re != password){
-			req.flash('error', '两次输入的密码不一致');
+			// req.flash('error', '两次输入的密码不一致');
 			return res.redirect('/reg');
 		}
 		var md5 = crypto.createHash('md5'),
@@ -38,21 +40,25 @@ module.exports = function(app){
 		});
 
 		User.get(newUser.name, function(err, user){
+
 			if(err){
-				req.flash('error', err);
+				// req.flash('error', err);
 				return res.redirect('/');
 			}
+
 			if(user){
-				req.flash('error', '用户已存在！');
+				// req.flash('error', '用户已存在！');
 				return res.redirect('/reg');
 			}
+			console.log('1111111');
 			newUser.save(function(err, user){
+				console.log('1111111',user);
 				if(err){
-					req.flash('error', err);
+					// req.flash('error', err);
 					return res.redirect('/reg');
 				}
 				req.session.user = user;
-				req.flash('success', '注册成功！');
+				// req.flash('success', '注册成功！');
 				res.redirect('/');
 			});
 		});
