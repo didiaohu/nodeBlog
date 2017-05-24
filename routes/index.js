@@ -62,7 +62,6 @@ module.exports = function(app){
 				res.redirect('/');
 			});
 		});
-
 	});
 	app.get('/login', function(req, res){
 		res.render('login', {title: '登录'});
