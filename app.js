@@ -35,7 +35,13 @@ app.use(session({
     url:'mongodb://localhost:27017/MongoDB'
   })
 }));
-
+app.use(flash());
+//设置flash  
+app.use(function(req, res, next){  
+  res.locals.error = req.flash('error') || "";  
+  res.locals.success = req.flash('success') || "";  
+  next();  
+});  
 routes(app);
 
 // catch 404 and forward to error handler
@@ -46,7 +52,7 @@ app.use(function(req, res, next) {
 });
 
 
-app.use(flash());
+
 // set flash
 // app.use(function (req, res, next) {
 //   res.locals.errors = req.flash('error');
