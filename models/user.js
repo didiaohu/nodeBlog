@@ -35,7 +35,6 @@ User.prototype.save = function(callback){
 				callback(null, user[0]);
 			});
 		});
-
 	});
 };
 
