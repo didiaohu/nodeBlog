@@ -1,8 +1,8 @@
 var crypto = require('crypto'),
 User = require('../models/user.js'),
 Post = require('../models/post.js'),
-Comment = require('../models/comment.js');
-
+Comment = require('../models/comment.js'),
+passport = require('passport');
 
 module.exports = function(app){
 	app.get('/', function(req, res){
@@ -67,8 +67,10 @@ module.exports = function(app){
 		});
 
 		User.get(newUser.name, function(err, user){
-
+			
 			if(err){
+				console.log(2222222222)
+				console.log(err)
 				// req.flash('error', err);
 				return res.redirect('/');
 			}
@@ -84,11 +86,24 @@ module.exports = function(app){
 				}
 				req.session.user = user;
 				// req.flash('success', '注册成功！');
+				console.log(3333333333333333333)
+				console.log(user)
 				res.redirect('/');
 			});
 		});
 	});
 	
+	app.get('/login/github', passport.authenticate('github', {session: false}));
+	app.get('/login/github/callback', passport.authenticate('github', {
+		session: false,
+		failureRedirect: '/login',
+		successFlash: '登录成功？'
+	}), function(req, res){
+		req.session.user = {name: req.user.username, head: 'https://gravatar.com/avatar/'+ req.user._json.gravatar_id + "?s=48"};
+		res.redirect('/');
+	});
+
+
 	app.get('/login', checkNotLogin);
 	app.get('/login', function(req, res){
 		res.render('login', {
@@ -248,11 +263,12 @@ module.exports = function(app){
 		var page = req.query.p ? parseInt(req.query.p) : 1;
 		User.get(req.params.name, function(err, user){
 			if(!user){
+
 				req.flash('error', '用户不存在！');
 				return res.redirect('/');
 			}
 
-			Post.getTen(null, page, function(err, posts, total){
+			Post.getTen(user.name, page, function(err, posts, total){
 				if(err){
 					posts = [];
 				}
@@ -273,7 +289,6 @@ module.exports = function(app){
 
 	app.get('/u/:name/:day/:title', function(req, res){
 		Post.getOne(req.params.name, req.params.day, req.params.title, function(err, post){
-			console.log('11111111',post);
 			if(err){
 				req.flash('error', err);
 				return res.redirect('/');

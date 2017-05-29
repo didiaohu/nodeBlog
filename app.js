@@ -17,6 +17,8 @@ var fs = require('fs');
 var accessLog = fs.createWriteStream('access.log', {flags: 'a'});
 var errorLog = fs.createWriteStream('error.log', {flags:'a'});
 var app = express();
+var passport = require('passport'),
+    GithubStrategy = require('passport-github').Strategy;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -57,7 +59,8 @@ app.use(function(req, res, next){
   res.locals.error = req.flash('error') || "";  
   res.locals.success = req.flash('success') || "";  
   next();  
-});  
+});
+app.use(passport.initialize());  
 routes(app);
 
 // catch 404 and forward to error handler
@@ -76,6 +79,14 @@ app.use(function(req, res, next) {
 //   next();
 // });
 
+passport.use(new GithubStrategy({
+  clientID: '6e315af5e19099f81beb',
+  clientSecret: 'efea1863ec53e65ffb94632badb55817ff4007e2',
+  callbackURL:'http://192.168.1.100:3000/login/github/callback'
+}, function(accessToken, refreshToken, profile, done){
+  done(null, profile);
+}
+));
 
 // error handler
 app.use(function(err, req, res, next) {

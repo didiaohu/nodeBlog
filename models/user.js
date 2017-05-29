@@ -22,6 +22,8 @@ User.prototype.save = function(callback){
 	// open mongodb
 	mongodb.open(function(err, db){
 		if(err){
+			// mongodb.close() 这里是我自己加行去的，感觉不加某种情况导致数据库异常
+			mongodb.close(); 
 			return callback(err);
 		}
 		db.collection('users', function(err, collection){
@@ -48,6 +50,8 @@ User.get = function(name, callback){
 	// open mongodb
 	mongodb.open(function(err, db){
 		if(err){
+			// mongodb.close() 这里是我自己加行去的，感觉不加某种情况导致数据库异常
+			mongodb.close(); 
 			return callback(err);
 		}
 		db.collection('users', function(err, collection){

@@ -4,6 +4,27 @@
 	<meta charset="UTF-8">
 	<title>Blog</title>
 	<link rel="stylesheet" href="/stylesheets/style.css">
+	<script type="text/javascript" src="/KindEditor/kindeditor-min.js"></script>
+	<script type="text/javascript" src="/KindEditor/lang/zh_CN.js"></script>
+	<script type="text/javascript">
+	var editor;
+
+	// 自定义编辑器功能
+	KindEditor.ready(function(K){
+		editor = K.create('textarea', {
+			allowImageUpload: false,
+			items:[
+			'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic',
+			'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'emoticons', 'image', 'link'
+			]
+		});
+	});
+
+	// 默认编辑器功能
+	// KindEditor.ready(function(){
+	// 	editor = K.create('#kindeditor');
+	// });
+	</script>
 </head>
 <body>
 	<header>

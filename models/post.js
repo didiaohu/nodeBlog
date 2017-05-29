@@ -35,6 +35,8 @@ Post.prototype.save = function(callback){
 
 	mongodb.open(function(err, db){
 		if(err){
+			// mongodb.close() 这里是我自己加行去的，感觉不加某种情况导致数据库异常
+			mongodb.close(); 
 			return callback(err);
 		}
 		db.collection('posts', function(err, collection){
@@ -60,6 +62,8 @@ Post.prototype.save = function(callback){
 Post.getAll = function(name, callback){
 	mongodb.open(function(err, db){
 		if(err){
+			// mongodb.close() 这里是我自己加行去的，感觉不加某种情况导致数据库异常
+			mongodb.close(); 
 			return callback(err);
 		}
 
@@ -94,6 +98,8 @@ Post.getAll = function(name, callback){
 Post.getOne = function(name, day, title, callback){
 	mongodb.open(function(err, db){
 		if(err){
+			// mongodb.close() 这里是我自己加行去的，感觉不加某种情况导致数据库异常
+			mongodb.close(); 
 			return callback(err);
 		}
 
@@ -127,10 +133,11 @@ Post.getOne = function(name, day, title, callback){
 						}
 					});
 
-					doc.post = markdown.toHTML(doc.post);
-					doc.comments.forEach(function(comment){
-						comment.content = markdown.toHTML(comment.content);
-					});
+					// markdown方式展示
+					// doc.post = markdown.toHTML(doc.post);
+					// doc.comments.forEach(function(comment){
+					// 	comment.content = markdown.toHTML(comment.content);
+					// });
 				}
 				// doc.post = markdown.toHTML(doc.post);
 				callback(null, doc);
@@ -143,6 +150,8 @@ Post.edit = function(name, day, title, callback){
 	mongodb.open(function(err, db){
 
 		if(err){
+			// mongodb.close() 这里是我自己加行去的，感觉不加某种情况导致数据库异常
+			mongodb.close(); 
 			return callback(err);
 		}
 
@@ -170,6 +179,8 @@ Post.edit = function(name, day, title, callback){
 Post.update = function(name, day, title, post, callback){
 	mongodb.open(function(err, db){
 		if(err){
+			// mongodb.close() 这里是我自己加行去的，感觉不加某种情况导致数据库异常
+			mongodb.close(); 
 			return callback(err);
 		}
 
@@ -199,6 +210,8 @@ Post.update = function(name, day, title, post, callback){
 Post.remove = function(name, day, title, callback) {
 	mongodb.open(function(err, db){
 		if(err){
+			// mongodb.close() 这里是我自己加行去的，感觉不加某种情况导致数据库异常
+			mongodb.close(); 
 			return callback(err);
 		}
 		db.collection('posts', function(err, collection){
@@ -228,6 +241,8 @@ Post.remove = function(name, day, title, callback) {
 Post.getTen = function(name, page, callback){
 	mongodb.open(function(err, db){
 		if(err){
+			// mongodb.close() 这里是我自己加行去的，感觉不加某种情况导致数据库异常
+			mongodb.close(); 
 			return callback(err);
 		}
 
@@ -251,9 +266,10 @@ Post.getTen = function(name, page, callback){
 					if(err){
 						return callback(err);
 					}
-					docs.forEach(function(doc){
-						doc.post = markdown.toHTML(doc.post);
-					});
+					// markdown的方式展示
+					// docs.forEach(function(doc){
+					// 	doc.post = markdown.toHTML(doc.post);
+					// });
 					callback(null, docs, total);
 				});
 			});
@@ -265,6 +281,8 @@ Post.getTen = function(name, page, callback){
 Post.getArchive = function(callback){
 	mongodb.open(function(err, db){
 		if(err){
+			// mongodb.close() 这里是我自己加行去的，感觉不加某种情况导致数据库异常
+			mongodb.close(); 
 			return callback(err);
 		}
 		db.collection('posts', function(err, collection){
@@ -294,6 +312,8 @@ Post.getArchive = function(callback){
 Post.getTags = function(callback){
 	mongodb.open(function(err, db){
 		if(err){
+			// mongodb.close() 这里是我自己加行去的，感觉不加某种情况导致数据库异常
+			mongodb.close(); 
 			return callback(err);
 		}
 
@@ -318,6 +338,8 @@ Post.getTags = function(callback){
 Post.getTag = function(tag, callback){
 	mongodb.open(function(err, db){
 		if(err){
+			// mongodb.close() 这里是我自己加行去的，感觉不加某种情况导致数据库异常
+			mongodb.close(); 
 			return callback(err);
 		}
 		db.collection('posts', function(err, collection){
@@ -349,6 +371,8 @@ Post.getTag = function(tag, callback){
 Post.search = function(keyword, callback){
 	mongodb.open(function(err, db){
 		if(err){
+			// mongodb.close() 这里是我自己加行去的，感觉不加某种情况导致数据库异常
+			mongodb.close(); 
 			return callback(err);
 		}
 		db.collection('posts', function(err, collection){
