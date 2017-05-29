@@ -82,7 +82,7 @@ app.use(function(req, res, next) {
 passport.use(new GithubStrategy({
   clientID: '6e315af5e19099f81beb',
   clientSecret: 'efea1863ec53e65ffb94632badb55817ff4007e2',
-  callbackURL:'http://192.168.1.100:3000/login/github/callback'
+  callbackURL:'http://192.168.1.101:3000/login/github/callback'
 }, function(accessToken, refreshToken, profile, done){
   done(null, profile);
 }
