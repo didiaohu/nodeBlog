@@ -2,7 +2,9 @@ var crypto = require('crypto'),
 User = require('../models/user.js'),
 Post = require('../models/post.js'),
 Comment = require('../models/comment.js'),
-passport = require('passport');
+passport = require('passport'),
+request = require('request'),
+cheerio = require('cheerio');
 
 module.exports = function(app){
 	app.get('/', function(req, res){
@@ -376,9 +378,23 @@ module.exports = function(app){
 		});
 	});
 
+	app.get('/reptile', function(req, res){
+		var url = req.query.url;
+		var name = req.query.name;
+		var description = req.query.description;
+		console.log('name', name);
+		console.log('url', url);
+		res.render('reptile', {
+			url: url,
+			name: name,
+			description: description
+		});
+	});
+
 	app.use(function(req, res){
 		res.render("404");
 	});
+
 
 	//中间件
 	function checkLogin(req, res, next){

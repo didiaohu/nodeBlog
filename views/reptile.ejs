@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>收藏到36镇|36镇-最好用的共享收藏夹</title>
+    <meta name="keywords" content="36镇、收藏夹、团队协同工具、共享收藏夹，网络收藏夹" />
+    <meta name="description" content="36镇是一个简单、高效的共享收藏夹，在这里您可以创建共享收藏夹，最方便高效的管理团队常用网址，供团队内部使用。" />
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+    <script type="text/javascript" src="/js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/js/jq_alert.js"></script>
+    <!--[if lte IE 8]>
+	<script type="text/javascript">
+		location.href='/browser';
+	</script>
+	<![endif]-->
+</head>
+
+<body style="background-color: #f7fafc;">
+    <div class="wrapper">
+        <div class="hd clearfix">
+            <div class="user-stat fr">
+                <a href="javascript:void(0)"></a>
+            </div>
+        </div>
+        <div class="bd">
+            <div class="rec-section">
+                <form id="website_form" method="post">
+                    <input class="field-title" value="<%= name %>" name="name" />
+                    <textarea class="field-title  rec-section-text" name="description"><%= description %></textarea>
+                    <input type="hidden" name="website" value="<%= url %>" />
+                </form>
+            </div>
+            <div class="rec-comment">
+                <div class="field-bottom">
+                    <a href="javascript:void(0);" class="field-bottom-btn" onclick="return submitForm(this)">小小书签</a> </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
