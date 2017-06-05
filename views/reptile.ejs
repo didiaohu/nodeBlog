@@ -10,11 +10,20 @@
     <script type="text/javascript" src="/js/jquery-2.1.4.js"></script>
     <script type="text/javascript" src="/js/jquery.form.js"></script>
     <script type="text/javascript" src="/js/jq_alert.js"></script>
-    <!--[if lte IE 8]>
-	<script type="text/javascript">
-		location.href='/browser';
-	</script>
-	<![endif]-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".field-bottom-btn").on("click", function(){
+                //新窗口方式添加网址提交
+                $("#website_form").attr("action", "/reptile");
+
+                $('#website_form').ajaxSubmit({
+                    success: function(data) {
+                        
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body style="background-color: #f7fafc;">
@@ -34,10 +43,11 @@
             </div>
             <div class="rec-comment">
                 <div class="field-bottom">
-                    <a href="javascript:void(0);" class="field-bottom-btn" onclick="return submitForm(this)">小小书签</a> </div>
+                    <a href="javascript:void(0);" class="field-bottom-btn">小小书签</a> </div>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>

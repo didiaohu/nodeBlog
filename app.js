@@ -49,6 +49,8 @@ app.use(session({
   secret: settings.cookieSecret,
   key: settings.db,
   cookie: {maxAge: 1000 * 60 * 60 *24 *30},
+  resave: true,  // 新增
+  saveUninitialized: true,
   store: new MongoStore({
     url:'mongodb://localhost:27017/MongoDB'
   })

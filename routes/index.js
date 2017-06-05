@@ -1,6 +1,7 @@
 var crypto = require('crypto'),
 User = require('../models/user.js'),
 Post = require('../models/post.js'),
+Website = require('../models/Website.js'),
 Comment = require('../models/comment.js'),
 passport = require('passport'),
 request = require('request'),
@@ -382,13 +383,22 @@ module.exports = function(app){
 		var url = req.query.url;
 		var name = req.query.name;
 		var description = req.query.description;
-		console.log('name', name);
-		console.log('url', url);
 		res.render('reptile', {
 			url: url,
 			name: name,
 			description: description
 		});
+	});
+
+	app.post('/reptile', function(req, res){
+		var name = req.body.name,
+			description = req.body.description,
+			ws = req.body.website,
+			website = new Website(name, description, ws);
+			// post = new Post(currentUser.name, req.body.title, req.body.post);
+			website.save(function(err){
+				res.redirect('/');
+			});
 	});
 
 	app.use(function(req, res){
