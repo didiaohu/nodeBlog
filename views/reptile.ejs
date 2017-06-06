@@ -18,7 +18,10 @@
 
                 $('#website_form').ajaxSubmit({
                     success: function(data) {
-                        
+                        $.BeautyAlert('success', '收藏成功');
+                        setTimeout(function() {
+                            window.close();
+                        }, 1000);
                     }
                 });
             });
