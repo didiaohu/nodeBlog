@@ -401,6 +401,18 @@ module.exports = function(app){
 			});
 	});
 
+	app.get('/collection', function(req, res){
+		Website.getAll(null, function(err, result){
+			res.render('collection', {
+				title: '收藏',
+				result: result,
+				user: req.session.user,
+				success: req.flash('success').toString(),
+				error: req.flash('error').toString()
+			});
+		});
+		
+	});
 	app.use(function(req, res){
 		res.render("404");
 	});

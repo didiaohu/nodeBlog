@@ -1,0 +1,12 @@
+<%- include header %>
+<ul class="colul">
+<% result.forEach(function(website, index){ %>
+<li>
+	<a href="<%= website.website%>" target="_blank">
+		<div class="colul-title"><%= website.name%></div>
+		<div class="colul-description"><%= website.description%></div>
+	</a>
+</li>
+<%})%>
+</ul>
+<%- include footer %>

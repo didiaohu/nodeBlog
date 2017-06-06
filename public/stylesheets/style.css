@@ -1,7 +1,10 @@
 *{
 	padding: 0; 
 	margin: 0;
+	list-style: none;
 }
+a:hover {text-decoration: none;}
+
 body {
 	width: 600px;
 	margin: 2em auto;
@@ -47,7 +50,6 @@ article a{
 }
 article a:hover{
 	color: #333;
-	text-decoration: underline;
 }
 .info{
 	font-size: 14px;
@@ -134,4 +136,54 @@ article a:hover{
 	float: right;
 	margin-top: -2.5em;
 	box-shadow: 0px 1px 4px #888;
+}
+
+.colul li{
+	float: left;
+    width: calc(32.28% - 22px);
+    width: -moz-calc(32.28% - 22px);
+    width: -webkit-calc(32.28% - 22px);
+    margin-bottom: 20px;
+    height: 220px;
+    margin: 10px;
+    box-shadow: 0 0 10px #ccc;
+    -webkit-box-shadow: 0 0 10px #ddd;
+    border: 1px #ddd solid;
+}
+
+.colul li a{
+	display: block;
+    background: #fff;
+    position: relative;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    height: 100%;
+}
+
+.colul-title{
+	color: #333;
+    display: block;
+    padding: 10px 15px 0 10px;
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.6em;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    height: 48px;
+}
+.colul-description{
+	margin: 0 16px;
+    height: 110px;
+    line-height: 21px;
+    font-size: 12px;
+    color: #757576;
+    overflow: hidden;
+    text-align: justify;
+    font-weight: 300;
+    font-family: "微软雅黑";
 }
